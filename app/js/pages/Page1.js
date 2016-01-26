@@ -7,17 +7,11 @@ import {
 const Page1 = React.createClass({
   getInitialState: function() {
     return {
-      resultId: '111',
-      resultComment: '222'
+      result: null
     };
   },
 
   componentDidMount: function() {
-        this.setState({
-	  resultId: "",
-          resultComment: ""
-        });
-
 	var nocache = require('superagent-no-cache');
 	var request = require('superagent');
 	
@@ -30,11 +24,8 @@ const Page1 = React.createClass({
 		alert(err);
 	      } else {
 		      if (this.isMounted()) {
-			var result = JSON.parse(res.text);
-		        var lastGist = result[1];
 			this.setState({
-			  resultId: lastGist.id,
-			  resultComment: lastGist.comment
+			  result: JSON.parse(res.text)
 			});
 		      }
 	      }
@@ -42,14 +33,32 @@ const Page1 = React.createClass({
   },  
 
   render() {
-    return (
-      <Container {...this.props}>
-        <Group>
-          <h2>{ this.state.resultId }</h2>
-          <p>{ this.state.resultComment }</p>
-        </Group>
-      </Container>
-    );
+	if (this.state.result == null) {
+	    return (
+	      <Container {...this.props}>
+		<Group>
+		</Group>
+	      </Container>
+	    );
+	} else {
+	    var repos = this.state.result;
+	    var repoList = repos.map(function (repo) {
+		return (
+		    <div>
+			<h2>{ repo.id }</h2>
+		  	<p>{ repo.comment }</p>
+		    </div>
+		);
+	    });
+	    return (
+	      <Container {...this.props}>
+		<Group>
+		  {repoList}
+		</Group>
+	      </Container>
+	    );
+	}
+
   },
 });
 
