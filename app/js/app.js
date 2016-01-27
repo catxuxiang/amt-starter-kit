@@ -37,7 +37,7 @@ const App = React.createClass({
           <TabBar.Item
             component={Link}
             icon="list"
-            title="组件"
+            title="主页"
             selected={!params.page}
             to="/"
           />
@@ -45,7 +45,6 @@ const App = React.createClass({
             component={Link}
             icon="info"
             title="关于"
-            badge="404"
             selected={params.page === 'about'}
             to="/about"
           />
@@ -63,7 +62,9 @@ const routes = (
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Index} />
-      <Route path=":page" component={Page} />
+      <Route path=":page" component={Page} >
+        <Route path=":pagechild" component={Page} />
+      </Route>
     </Route>
   </Router>
 );

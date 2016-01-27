@@ -9,19 +9,29 @@ import {
 
 import Page1 from './Page1';
 import Page2 from './Page2';
+import Page3 from './Page3';
 import NotFound from './NotFound';
 
 const pages = {
   Page1,
   Page2,
+  Page3,
 };
 
 const Page = React.createClass({
   render() {
+    let pagechild = this.props.params.pagechild;
     let page = this.props.params.page;
-
-    if (page) {
-      page = page.charAt(0).toUpperCase() + page.slice(1);
+    let pathName = this.props.location.pathname;
+    let back = pathName.substring(0, pathName.lastIndexOf('/'));
+ 
+    if (pagechild)
+    {
+        page = pagechild.charAt(0).toUpperCase() + pagechild.slice(1);
+    } else {
+      if (page) {
+        page = page.charAt(0).toUpperCase() + page.slice(1);
+      }
     }
 
     const Component = pages[page] || NotFound;
@@ -30,7 +40,7 @@ const Page = React.createClass({
       icon: 'left-nav',
       title: '返回',
       props: {
-        to: '/',
+        to: back,
       },
     };
 

@@ -5,10 +5,27 @@ import {
   NavBar,
   Group,
   View,
+  Slider,
 } from 'amazeui-touch';
 import {
   Link,
 } from 'react-router';
+
+const sliderIntance = (
+  <Slider>
+    <Slider.Item>
+      <img src="./i/slider/1.jpg" />
+    </Slider.Item>
+    <Slider.Item><img src="./i/slider/2.jpg" />
+    </Slider.Item>
+    <Slider.Item>
+      <img src="./i/slider/3.jpg" />
+    </Slider.Item>
+    <Slider.Item>
+      <img src="./i/slider/4.jpg" />
+    </Slider.Item>
+  </Slider>
+);
 
 const Index = React.createClass({
   getDefaultProps() {
@@ -21,6 +38,7 @@ const Index = React.createClass({
     const pages = [
       'Page1',
       'Page2',
+      'Page3',
     ];
 
     return pages.map((item, index) => {
@@ -40,17 +58,13 @@ const Index = React.createClass({
       <View>
         <NavBar
           amStyle="primary"
-          title="AMT Starter Kit"
+          title="郞郞的小窝"
         />
         <Container scrollable>
-          <Group
-            header="Welcome to AMT."
-            noPadded
-          >
-            <List>
+            {sliderIntance}
+            <List classPrefix="mylist">
               {this.renderItems()}
             </List>
-          </Group>
         </Container>
       </View>
     );

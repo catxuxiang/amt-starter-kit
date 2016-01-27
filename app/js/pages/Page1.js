@@ -7,15 +7,15 @@ import {
 const Page1 = React.createClass({
   getInitialState: function() {
     return {
-      result: null
+      result: null,
     };
   },
 
   componentDidMount: function() {
-	var nocache = require('superagent-no-cache');
-	var request = require('superagent');
+    let nocache = require('superagent-no-cache');
+    let request = require('superagent');
 	
-	request
+    request
 	.get("http://192.168.0.105:6699/mysql")
 	.use(nocache)
 	.withCredentials()
