@@ -24,6 +24,7 @@ const Page = React.createClass({
     let page = this.props.params.page;
     let pathName = this.props.location.pathname;
     let back = pathName.substring(0, pathName.lastIndexOf('/'));
+    if (back != '') back += 'L';
  
     if (pagechild)
     {
@@ -33,6 +34,7 @@ const Page = React.createClass({
         page = page.charAt(0).toUpperCase() + page.slice(1);
       }
     }
+    page=page.substring(0, page.length-1);
 
     const Component = pages[page] || NotFound;
     const backNav = {

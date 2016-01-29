@@ -21,7 +21,9 @@ const App = React.createClass({
       children,
       ...props,
       } = this.props;
-    const transition = children.props.transition || 'sfr';
+    const length = this.props.location.pathname.length;
+    const tag = this.props.location.pathname.substring(length-1, length);
+    const transition = children.props.transition || (tag == 'L' ? 'rfr' : 'sfr');
 
     return (
       <Container direction="column" id="sk-container">
@@ -37,7 +39,7 @@ const App = React.createClass({
           <TabBar.Item
             component={Link}
             icon="list"
-            title="主页"
+            title={tag}
             selected={!params.page}
             to="/"
           />

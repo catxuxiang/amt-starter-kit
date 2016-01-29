@@ -10,7 +10,7 @@ import browserSync from 'browser-sync';
 import webpack from 'webpack-stream';
 
 const $ = gulpLoadPlugins();
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = true;
 
 const AUTOPREFIXER_BROWSERS = [
   'ie_mob >= 10',
