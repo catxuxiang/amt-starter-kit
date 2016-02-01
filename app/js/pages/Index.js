@@ -57,7 +57,7 @@ const Index = React.createClass({
       return (
         <List.Item
           linkComponent={Link}
-          linkProps={{to: `/${item.page.toLowerCase()}R`}}
+          linkProps={{to: `/${item.page.toLowerCase()}`, query: { dir: 'R' }}}
           title={item.title}
           key={index}
         />

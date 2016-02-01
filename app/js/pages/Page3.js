@@ -18,7 +18,7 @@ const Page3 = React.createClass({
       return (
         <List.Item
           linkComponent={Link}
-          linkProps={{to: `/page3/${item.toLowerCase()}R`}}
+          linkProps={{to: `/page3/${item.toLowerCase()}`, query: { dir: 'R' }}}
           title={item}
           key={index}
         />
